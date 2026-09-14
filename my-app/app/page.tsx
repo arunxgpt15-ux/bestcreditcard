@@ -15,10 +15,7 @@ import {
   IndianRupee,
   Laptop,
   Plane,
-  Instagram,
-  Linkedin,
   Sparkles,
-  Twitter,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -71,8 +68,8 @@ type Recommendation = {
   badges: string[];
 };
 
-const primaryButtonClass = "rounded-xl bg-teal-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-300";
-const secondaryButtonClass = "rounded-xl border border-white/15 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white transition hover:border-amber-300/40 hover:bg-amber-300/10";
+const primaryButtonClass = "rounded-xl bg-teal-400 px-5 py-3 text-sm font-semibold text-slate-950 transition duration-300 hover:bg-teal-300 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-teal-300";
+const secondaryButtonClass = "rounded-xl border border-white/15 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:border-amber-300/40 hover:bg-amber-300/10 active:scale-[0.98]";
 
 function OptionButton({
   value,
@@ -219,6 +216,8 @@ export default function Home() {
     <>
     <main className="relative isolate min-h-screen overflow-hidden bg-slate-950 text-white">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_15%_20%,rgba(13,148,136,0.22),transparent_30%),radial-gradient(circle_at_85%_80%,rgba(245,158,11,0.12),transparent_28%)]" />
+      <div className="absolute left-1/4 top-0 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-teal-500/10 blur-[120px]" />
+      <div className="absolute right-0 top-1/3 -z-10 h-[420px] w-[420px] translate-x-1/4 rounded-full bg-amber-500/10 blur-[120px]" />
 
       <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-6 lg:px-10">
         <p className="text-lg font-bold tracking-tight text-white">BestCreditCard<span className="text-teal-400">.dev</span></p>
@@ -231,7 +230,7 @@ export default function Home() {
             <span className="h-2 w-2 rounded-full bg-teal-300" /> Built for your next departure
           </p>
           <h1 className="text-5xl font-black leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Find the Perfect Credit Card for Your Next Journey
+            Find the Perfect <span className="bg-gradient-to-r from-teal-300 to-amber-200 bg-clip-text text-transparent">Credit Card</span> for Your Next Journey
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-8 text-slate-300 sm:text-xl">
             Compare travel rewards, lounge access, and real-world perks in one clear place, so every mile takes you further.
@@ -246,9 +245,9 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-md lg:mr-8">
+        <div className="relative mx-auto w-full max-w-md [perspective:1000px] lg:mr-8">
           <div className="absolute -inset-5 rounded-[2rem] border border-teal-300/10 bg-teal-300/5 blur-2xl" />
-          <div className="relative rotate-2 overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-950 p-7 shadow-2xl shadow-black/40 transition-transform duration-500 hover:rotate-0">
+          <div className="relative transform-gpu overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-950 p-7 shadow-2xl shadow-black/40 [transform:rotateY(-10deg)_rotateX(5deg)] transition-all duration-700 hover:scale-105 hover:[transform:rotateY(0deg)_rotateX(0deg)_scale(1.05)]">
             <div className="flex items-start justify-between">
               <span className="text-sm font-semibold text-slate-300">TRAVEL CARD</span>
               <span className="text-lg font-black tracking-widest text-amber-300">BC</span>
@@ -286,8 +285,9 @@ export default function Home() {
             {featuredCards.map((card) => (
               <article
                 key={card.name}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-teal-400/40 hover:bg-white/[0.07]"
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:border-teal-400/50 hover:bg-white/[0.04] hover:shadow-[0_20px_40px_rgba(45,212,191,0.1)]"
               >
+                <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-3xl transition-transform duration-700 group-hover:scale-150" />
                 <div className={`relative min-h-48 overflow-hidden rounded-2xl border border-white/15 p-5 ${card.gradient}`}>
                   <div className="absolute -right-8 -top-10 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
                   <div className="absolute -bottom-12 -left-8 h-36 w-36 rounded-full bg-teal-300/10 blur-2xl" />
@@ -320,9 +320,9 @@ export default function Home() {
                   ))}
                 </ul>
 
-                <button
+                  <button
                   aria-label={`Apply now for ${card.name}`}
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-teal-400 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 focus:ring-offset-slate-950"
+                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-teal-400 px-4 py-3 text-sm font-semibold text-slate-950 transition duration-300 hover:bg-teal-300 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 focus:ring-offset-slate-950"
                 >
                   Apply Now
                   <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -347,7 +347,7 @@ export default function Home() {
           </div>
 
           <div className="mb-10 h-1.5 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full rounded-full bg-gradient-to-r from-teal-400 to-amber-300 transition-all duration-300" style={{ width: `${(step / 4) * 100}%` }} />
+            <div className="h-full rounded-full bg-gradient-to-r from-teal-400 via-teal-300 to-amber-300 shadow-[0_0_15px_rgba(45,212,191,0.5)] transition-all duration-500 ease-out" style={{ width: `${(step / 4) * 100}%` }} />
           </div>
 
           {step === 1 && (
@@ -556,7 +556,9 @@ export default function Home() {
 
           {step === 4 && recommendation && (
             <div className="transition-all duration-300">
-              <div className="rounded-3xl border border-teal-400/30 bg-gradient-to-br from-teal-400/10 via-slate-950 to-amber-300/5 p-6 sm:p-8">
+              <div className="relative animate-[result-pop_500ms_ease-out_both] overflow-hidden rounded-[2rem] border border-teal-400/30 bg-gradient-to-br from-teal-400/10 via-slate-950 to-amber-300/5 p-8 sm:p-10">
+                <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-teal-400/20 blur-[100px]" />
+                <div className="relative">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-teal-400">YOUR BEST MATCH</p>
                 <h3 className="mt-4 text-3xl font-bold text-white">{recommendation.category}</h3>
                 <p className="mt-3 max-w-2xl text-slate-300">{recommendation.subtitle}</p>
@@ -595,6 +597,7 @@ export default function Home() {
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <button type="button" className={primaryButtonClass}>Compare matching cards <ArrowRight aria-hidden="true" className="ml-2 inline h-4 w-4" /></button>
                   <button type="button" onClick={resetQuiz} className={secondaryButtonClass}>Start over</button>
+                </div>
                 </div>
               </div>
             </div>
@@ -637,13 +640,21 @@ export default function Home() {
             <p className="mt-4 max-w-sm text-sm leading-6 text-slate-400">Find the travel card that turns everyday spending into your next journey.</p>
             <div className="mt-6 flex gap-3">
               <button type="button" aria-label="JourneyCard on Twitter" className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-slate-400 transition hover:border-teal-400/40 hover:bg-teal-400/10 hover:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-400">
-                <Twitter aria-hidden="true" className="h-4 w-4" />
+                <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.963 6.817H1.684l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+                </svg>
               </button>
               <button type="button" aria-label="JourneyCard on Instagram" className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-slate-400 transition hover:border-teal-400/40 hover:bg-teal-400/10 hover:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-400">
-                <Instagram aria-hidden="true" className="h-4 w-4" />
+                <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none" />
+                </svg>
               </button>
               <button type="button" aria-label="JourneyCard on LinkedIn" className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-slate-400 transition hover:border-teal-400/40 hover:bg-teal-400/10 hover:text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-400">
-                <Linkedin aria-hidden="true" className="h-4 w-4" />
+                <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M5.164 3.5a2.164 2.164 0 1 1 0 4.328 2.164 2.164 0 0 1 0-4.328ZM3.25 9.5h3.828V21H3.25V9.5Zm6.25 0h3.672v1.57h.052c.511-.969 1.76-1.99 3.624-1.99 3.875 0 4.592 2.55 4.592 5.865V21h-3.828v-5.37c0-1.28-.024-2.927-1.784-2.927-1.787 0-2.061 1.395-2.061 2.835V21H9.5V9.5Z" />
+                </svg>
               </button>
             </div>
           </div>
