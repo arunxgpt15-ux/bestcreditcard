@@ -1,131 +1,56 @@
-"use client";
-import { useState } from 'react';
-
 export default function Home() {
-  const [destination, setDestination] = useState('');
-  const [age, setAge] = useState('');
-  const [result, setResult] = useState<any>(null);
-
-  const handleSearch = () => {
-    if (!destination || !age) {
-      alert("Bro, please select both destination and age!");
-      return;
-    }
-
-    // 1. Weather & Gear Logic
-    const dest = destination.toLowerCase();
-    let weatherData = { temp: '22°C', condition: 'Pleasant 🌤️', gear1: 'Travel Backpack', gear2: 'Universal Adapter' };
-    
-    if (dest.includes('dubai') || dest.includes('bali') || dest.includes('maldives')) {
-      weatherData = { temp: '34°C', condition: 'Scorching Hot ☀️', gear1: 'SPF 50 Sunscreen', gear2: 'Polarized Sunglasses' };
-    } else if (dest.includes('london') || dest.includes('paris') || dest.includes('canada')) {
-      weatherData = { temp: '4°C', condition: 'Freezing Cold ❄️', gear1: 'Winter Trench Coat', gear2: 'Thermal Wear' };
-    }
-
-    // 2. Credit Card Logic based on Age
-    let cardData = { name: 'IDFC First Wealth', perks: ['1.5% Forex Markup', 'Free Lounges', 'Good Rewards'] };
-    
-    if (age === '18-24') {
-      cardData = { name: 'Scapia Federal Card', perks: ['0% Forex Markup', 'Zero Annual Fee', 'Budget Travel Focus'] };
-    } else if (age === '25-40') {
-      cardData = { name: 'HDFC Regalia Gold', perks: ['Global Lounge Access', 'Flight Milestone Rewards', 'Premium Lifestyle'] };
-    } else if (age === '41-60') {
-      cardData = { name: 'HDFC Infinia (Metal)', perks: ['Unlimited Global Lounges', 'Golf Access & Concierge', 'Luxury Travel'] };
-    }
-
-    // Set final result
-    setResult({ weather: weatherData, card: cardData });
-  };
-
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-20">
-      <header className="p-6 bg-white shadow-sm flex justify-between items-center">
-        <h1 className="text-2xl font-extrabold text-blue-600 tracking-tight">BestCreditCard<span className="text-slate-800">.dev</span></h1>
-        <p className="text-sm font-semibold text-slate-500 hidden sm:block">Smart Travel & Finance Engine</p>
+    <main className="relative isolate min-h-screen overflow-hidden bg-slate-950 text-white">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_15%_20%,rgba(13,148,136,0.22),transparent_30%),radial-gradient(circle_at_85%_80%,rgba(245,158,11,0.12),transparent_28%)]" />
+
+      <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-6 lg:px-10">
+        <p className="text-lg font-bold tracking-tight text-white">BestCreditCard<span className="text-teal-400">.dev</span></p>
+        <p className="hidden text-sm font-medium text-slate-400 sm:block">Smart travel, better rewards</p>
       </header>
 
-      <section className="max-w-5xl mx-auto mt-16 p-6 text-center">
-        <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
-          Find the Perfect Card <br/> for Your Next Trip.
-        </h2>
-        
-        <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl flex flex-col md:flex-row gap-4 items-center justify-center max-w-4xl mx-auto border border-slate-100 mt-10">
-          <input
-            type="text"
-            placeholder="Where to? (e.g., London, Dubai)"
-            className="w-full md:w-1/3 p-4 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium text-black"
-            value={destination}
-            onChange={(e) => setDestination(e.target.value)}
-          />
-          <select
-            className="w-full md:w-1/3 p-4 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium bg-white text-black"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-          >
-            <option value="">Select Age Group</option>
-            <option value="18-24">18 - 24 Years (Student / First Job)</option>
-            <option value="25-40">25 - 40 Years (Professional)</option>
-            <option value="41-60">41 - 60+ Years (Established)</option>
-          </select>
-          <button 
-            onClick={handleSearch}
-            className="w-full md:w-auto px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-200"
-          >
-            Show My Perks
-          </button>
+      <section className="mx-auto grid min-h-[calc(100vh-88px)] w-full max-w-7xl items-center gap-14 px-6 pb-16 pt-10 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:pb-24">
+        <div className="max-w-2xl">
+          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-400/10 px-4 py-2 text-sm font-semibold text-teal-300">
+            <span className="h-2 w-2 rounded-full bg-teal-300" /> Built for your next departure
+          </p>
+          <h1 className="text-5xl font-black leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            Find the Perfect Credit Card for Your Next Journey
+          </h1>
+          <p className="mt-7 max-w-xl text-lg leading-8 text-slate-300 sm:text-xl">
+            Compare travel rewards, lounge access, and real-world perks in one clear place, so every mile takes you further.
+          </p>
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <button className="rounded-xl bg-teal-400 px-6 py-4 text-base font-bold text-slate-950 shadow-lg shadow-teal-950/40 transition hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 focus:ring-offset-slate-950">
+              Explore Cards
+            </button>
+            <button className="rounded-xl border border-slate-600 bg-slate-900/60 px-6 py-4 text-base font-bold text-white transition hover:border-amber-300 hover:text-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-slate-950">
+              Travel Deals
+            </button>
+          </div>
+        </div>
+
+        <div className="relative mx-auto w-full max-w-md lg:mr-8">
+          <div className="absolute -inset-5 rounded-[2rem] border border-teal-300/10 bg-teal-300/5 blur-2xl" />
+          <div className="relative rotate-2 overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-950 p-7 shadow-2xl shadow-black/40 transition-transform duration-500 hover:rotate-0">
+            <div className="flex items-start justify-between">
+              <span className="text-sm font-semibold text-slate-300">TRAVEL CARD</span>
+              <span className="text-lg font-black tracking-widest text-amber-300">BC</span>
+            </div>
+            <div className="mt-16 h-10 w-14 rounded-lg border border-amber-200/50 bg-gradient-to-br from-amber-200 to-amber-500 shadow-inner" />
+            <div className="mt-10 flex items-end justify-between">
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Your next adventure</p>
+                <p className="mt-2 text-lg font-bold text-white">Rewards that go places</p>
+              </div>
+              <span className="text-3xl text-teal-300">+</span>
+            </div>
+          </div>
+          <div className="absolute -bottom-8 -left-8 rounded-2xl border border-white/10 bg-slate-900/90 p-4 shadow-xl backdrop-blur">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Worth discovering</p>
+            <p className="mt-1 text-xl font-black text-white">3.2x <span className="text-sm font-medium text-teal-300">travel points</span></p>
+          </div>
         </div>
       </section>
-
-      {/* Dynamic Results Section */}
-      {result && (
-        <section className="max-w-5xl mx-auto mt-8 p-6">
-          <div className="grid md:grid-cols-2 gap-8">
-            
-            <div className="bg-white p-8 rounded-3xl shadow-lg border-t-4 border-blue-500">
-              <span className="text-xs font-bold bg-blue-100 text-blue-700 px-3 py-1 rounded-full uppercase tracking-wider">Top Card Pick</span>
-              <h3 className="text-2xl font-black mt-4 mb-2">{result.card.name}</h3>
-              <p className="text-slate-600 mb-6">Perfect match for your profile. Enjoy smart perks for {destination}.</p>
-              
-              <ul className="space-y-3 mb-8">
-                {result.card.perks.map((perk: string, index: number) => (
-                  <li key={index} className="flex items-center text-sm font-medium text-slate-700">
-                    <span className="text-green-500 mr-2 text-lg">✔</span> {perk}
-                  </li>
-                ))}
-              </ul>
-              
-              <button className="w-full py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition">
-                Apply Now (Earn ₹2000 Cashback)
-              </button>
-            </div>
-
-            <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-8 rounded-3xl shadow-lg text-white">
-              <span className="text-xs font-bold bg-white/20 text-white px-3 py-1 rounded-full uppercase tracking-wider">Weather & Gear</span>
-              <h3 className="text-2xl font-black mt-4 mb-2">It's {result.weather.condition} in {destination}</h3>
-              <p className="text-indigo-100 mb-6">Expected temp: {result.weather.temp}. Don't forget to pack these essentials.</p>
-              
-              <div className="space-y-4">
-                <div className="bg-white/10 hover:bg-white/20 cursor-pointer transition p-4 rounded-xl border border-white/10 flex justify-between items-center">
-                  <div>
-                    <p className="font-bold">{result.weather.gear1}</p>
-                    <p className="text-sm text-indigo-200">Amazon Bestseller</p>
-                  </div>
-                  <span className="bg-white text-indigo-600 px-4 py-2 rounded-lg text-sm font-bold border border-white">Buy</span>
-                </div>
-                
-                <div className="bg-white/10 hover:bg-white/20 cursor-pointer transition p-4 rounded-xl border border-white/10 flex justify-between items-center">
-                  <div>
-                    <p className="font-bold">{result.weather.gear2}</p>
-                    <p className="text-sm text-indigo-200">Must-have for travel</p>
-                  </div>
-                  <span className="bg-white text-indigo-600 px-4 py-2 rounded-lg text-sm font-bold border border-white">Buy</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-      )}
     </main>
   );
 }
