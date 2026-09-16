@@ -1,0 +1,8 @@
+"use client";
+
+import { useState } from "react";
+import { ArrowRight } from "lucide-react";
+import { Container } from "@/src/components/layout/Container";
+import { Button } from "@/src/components/ui/Button";
+
+export function CtaBand() { const [email, setEmail] = useState(""); const [sent, setSent] = useState(false); return <section className="relative overflow-hidden py-20 md:py-28"><div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(45,212,191,.22),transparent_35%),radial-gradient(circle_at_80%_80%,rgba(252,211,77,.16),transparent_32%)]" /><Container><div className="glass-card overflow-hidden p-7 sm:p-12 lg:p-16"><p className="eyebrow">Stay in the loop</p><h2 className="display-heading mt-4 max-w-2xl text-4xl text-ink sm:text-5xl">Better cards. Better trips. Fewer surprises.</h2><p className="mt-5 max-w-xl text-muted">Get occasional card updates and travel-value notes. No spam, no selling your inbox.</p>{sent ? <p className="mt-8 font-bold text-teal-400">You&apos;re on the list. Welcome aboard.</p> : <form className="mt-8 flex max-w-lg flex-col gap-3 sm:flex-row" onSubmit={(event) => { event.preventDefault(); if (email.includes("@")) setSent(true); }}><label className="sr-only" htmlFor="email">Email address</label><input id="email" type="email" required value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" className="focus-ring min-h-12 flex-1 rounded-xl border border-border bg-bg/60 px-4 text-ink outline-none placeholder:text-muted" /><Button type="submit">Join free<ArrowRight aria-hidden="true" className="h-4 w-4" /></Button></form>}</div></Container></section>; }

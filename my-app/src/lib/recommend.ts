@@ -21,6 +21,7 @@ const priorityWeight: Record<CardTag, number> = {
   domestic: 12,
   international: 16,
   business: 16,
+  fuel: 10,
 };
 
 const feeComfortBias = (fee: number | null, comfort: number) => {

@@ -65,7 +65,8 @@ export type CardTag =
   | "milestone"
   | "domestic"
   | "international"
-  | "business";
+  | "business"
+  | "fuel";
 
 export const TAG_LABELS: Record<CardTag, string> = {
   travel: "Travel",
@@ -81,6 +82,7 @@ export const TAG_LABELS: Record<CardTag, string> = {
   domestic: "Domestic travel",
   international: "International travel",
   business: "Business spends",
+  fuel: "Fuel",
 };
 
 /** Source citation — har factual claim ke saath ek link. */

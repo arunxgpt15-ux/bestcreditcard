@@ -1,0 +1,14 @@
+"use client";
+
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
+import { useEffect } from "react";
+
+export function CreditCard3D() {
+  const reduced = useReducedMotion();
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const rotateX = useSpring(useTransform(pointerY, [-1, 1], [12, -12]), { stiffness: 120, damping: 18 });
+  const rotateY = useSpring(useTransform(pointerX, [-1, 1], [-12, 12]), { stiffness: 120, damping: 18 });
+  useEffect(() => { if (reduced) return; const move = (event: PointerEvent) => { pointerX.set((event.clientX / window.innerWidth) * 2 - 1); pointerY.set((event.clientY / window.innerHeight) * 2 - 1); }; window.addEventListener("pointermove", move); return () => window.removeEventListener("pointermove", move); }, [pointerX, pointerY, reduced]);
+  return <div className="relative mx-auto w-full max-w-lg py-10 sm:py-16"><motion.div style={reduced ? undefined : { rotateX, rotateY }} animate={reduced ? undefined : { y: [0, -8, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="relative aspect-[1.586] overflow-hidden rounded-[24px] border border-white/20 bg-gradient-to-br from-slate-600 via-slate-900 to-black p-6 shadow-2xl shadow-teal-950/50 sm:p-8"><div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--x,50%)_var(--y,50%),rgba(45,212,191,.34),transparent_30%)]" /><div className="absolute inset-0 opacity-25 mix-blend-screen" style={{ background: "conic-gradient(from 120deg at 50% 50%, transparent, rgba(252,211,77,.6), transparent 25%)" }} /><div className="relative flex h-full flex-col justify-between"><div className="flex justify-between text-xs font-bold tracking-[.24em] text-white/60"><span>JOURNEYCARD</span><span className="text-amber-300">JC</span></div><div className="h-10 w-14 rounded-lg border border-amber-100/60 bg-gradient-to-br from-amber-100 to-amber-500 shadow-inner" /><div className="flex items-end justify-between"><div><p className="text-[10px] uppercase tracking-[.2em] text-white/50">Premium travel rewards</p><p className="mt-2 text-lg font-bold text-white sm:text-xl">Your next journey starts here</p></div><span className="text-3xl text-teal-300">✦</span></div></div></motion.div><div className="absolute -bottom-1 -left-2 rounded-2xl border border-white/15 bg-slate-950/80 px-4 py-3 shadow-xl backdrop-blur sm:-left-8"><p className="text-[10px] uppercase tracking-[.16em] text-white/50">Average value found</p><p className="mt-1 text-lg font-black text-white">₹42,000 <span className="text-xs font-medium text-teal-300">/ year</span></p></div><div className="absolute -right-2 top-4 rounded-2xl border border-white/15 bg-slate-950/80 px-4 py-3 shadow-xl backdrop-blur sm:-right-8"><p className="text-[10px] uppercase tracking-[.16em] text-white/50">Live matches</p><p className="mt-1 text-lg font-black text-teal-300">2,400+</p></div></div>;
+}

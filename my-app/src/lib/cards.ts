@@ -334,7 +334,7 @@ export const CARD_DB: CreditCard[] = [
       "3.5% forex fee — international trips ke liye ye card mat use karna.",
       "Cashback pe monthly cap hota hai; issuer T&C confirm karo.",
     ],
-    tags: ["cashback", "shopping", "starter", "domestic"],
+    tags: ["cashback", "shopping", "starter", "domestic", "fuel"],
     dataConfidence: "verified",
     sources: [
       { label: "SBI Card — Cashback SBI Card", url: "https://www.sbicard.com/en/personal/credit-cards/cashback-sbi-card.html" },

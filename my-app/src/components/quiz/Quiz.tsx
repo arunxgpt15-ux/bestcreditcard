@@ -62,7 +62,7 @@ export function Quiz({ onComplete }: QuizProps) {
   const [feeComfort, setFeeComfort] = useState(0);
   const [creditStage, setCreditStage] = useState<Profile["creditStage"]>("");
   const [priorities, setPriorities] = useState<string[]>([]);
-  const [spends, setSpends] = useState<Record<SpendCategory, number>>(DEFAULT_SPENDS);
+  const spends: Record<SpendCategory, number> = DEFAULT_SPENDS;
 
   const isStepValid = useMemo(() => {
     if (step === 1) return Boolean(ageGroup);
@@ -89,7 +89,7 @@ export function Quiz({ onComplete }: QuizProps) {
       tripsPerYear,
       travelType,
       loungeNeed,
-      priorities: priorities as any,
+      priorities: priorities as Profile["priorities"],
       feeComfort,
       creditStage,
     };
@@ -267,4 +267,5 @@ export function Quiz({ onComplete }: QuizProps) {
       )}
     </div>
   );
-}
+}
+

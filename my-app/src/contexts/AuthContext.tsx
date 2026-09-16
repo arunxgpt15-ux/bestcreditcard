@@ -25,8 +25,12 @@ const STORAGE_KEY = "bestcreditcard:auth:v1";
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 function makePublicUser(user: User): PublicUser {
-  const { salt, passwordHash, ...publicUser } = user;
-  return publicUser;
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    createdAt: user.createdAt,
+  };
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -34,13 +38,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState<AuthStatus>("loading");
 
   useEffect(() => {
-    const saved = readStorage<User | null>(STORAGE_KEY, null);
-    if (saved) {
-      setUser(makePublicUser(saved));
-      setStatus("authenticated");
-    } else {
-      setStatus("anonymous");
-    }
+    const hydrationId = window.setTimeout(() => {
+      const saved = readStorage<User | null>(STORAGE_KEY, null);
+      if (saved) {
+        setUser(makePublicUser(saved));
+        setStatus("authenticated");
+      } else {
+        setStatus("anonymous");
+      }
+    }, 0);
+    return () => window.clearTimeout(hydrationId);
   }, []);
 
   const signUp = async (name: string, email: string, password: string) => {
